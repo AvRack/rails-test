@@ -1,13 +1,30 @@
 <% provide(:title, @post.title) %>
 	<div class="posts">
 		<div class = "user_info">
-    	<%= gravatar_for @user, size:52%>
-    	<h4 class="black_link" ><%= link_to @user.name, @user %></h4>
+    	<%= gravatar_for @user %>
+    	<h4 class="user_name" ><%= link_to @user.name, @user %></h4>
 		</div>
     	<h3 class="post_title"><%= @post.title %></h3>
     	<span class="content"><%= simple_format(@post.content) %></span>
-	 		<span class="black_link">
+	 		<span class="tag_links">
    		Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
  			</span></br>
  			<span class="timestamp"> Posted <%= @post.created_at %> </span>
+	</div>
+	<div class="comments">
+		<h2>Comments</h2>
+		<%= form_for([@post,@post.comments.build]) do |f| %>
+
+			<%= f.label :content %>
+    	<%= f.text_area :content %>
+
+    	<%= f.hidden_field :user_id, value: current_user.id if signed_in? %>
+    	<%= f.submit "Add comment", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <% if @comments.count !=0 %>
+    <ul class="posts">
+  		<%= render @comments %>
+		</ul>
+		<% end %>
 	</div>

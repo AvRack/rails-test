@@ -1,0 +1,13 @@
+<% if comment.created_at !=nil %>
+<% if comment.user_id.nil? %>
+    <h5 class="anonymous">Author: Anonymous</h5>
+  <% else %>
+    <h5 class="comment_author" >
+    	Author: <%= link_to comment.user.name, comment.user %>
+  	</h5>
+  <% end %>
+
+<span class="content"><%= comment.content %></span>
+
+<span class="timestamp"> Posted <%= time_ago_in_words(comment.created_at) %> </span>
+<% end %>

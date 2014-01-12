@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
   end
 
- def create
+  def create
     @post = current_user.posts.build(params[:post])
     if @post.save
       flash[:success] = "Post created!"
@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @comments = @post.comments
   end
 
   def index

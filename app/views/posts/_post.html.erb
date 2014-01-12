@@ -1,4 +1,9 @@
-	<h3 class="post_title"><%= link_to post.title, post_path(post[:id]) %></h3>
+	<h5 class="post_title">
+    Title: <%= link_to post.title, post_path(post[:id]) %>
+  </h3>
+  <h5 class="post_author" >
+    Author: <%= link_to post.user.name, post.user %>
+  </h5>
   <span class="content"><%= wrap(post.content) %></span>
   <span class="tag_list">
     Tags: <%= raw post.tag_list.map {|t| link_to t, tag_path(t)}.join(', ') %>
