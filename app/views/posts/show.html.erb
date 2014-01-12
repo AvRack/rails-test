@@ -25,6 +25,7 @@
     <% if @comments.count !=0 %>
     <ul class="posts">
   		<%= render @comments %>
+  		<%= will_paginate @comments %>
 		</ul>
 		<% end %>
 	</div>
