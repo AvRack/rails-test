@@ -39,3 +39,7 @@ group :test do
   gem 'libnotify', '0.5.9'
   gem 'factory_girl_rails', '4.1.0'
 end
+
+group :production do
+    gem 'rails_12factor'
+end
