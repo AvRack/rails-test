@@ -1,0 +1,13 @@
+	<h3 class="post_title"><%= link_to post.title, post_path(post[:id]) %></h3>
+  <span class="content"><%= wrap(post.content) %></span>
+  <span class="tag_list">
+    Tags: <%= raw post.tag_list.map {|t| link_to t, tag_path(t)}.join(', ') %>
+  </span></br>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span></br>
+  <% if current_user?(post.user) %>
+    <%= link_to "delete", post, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: post.content %>
+  <% end %>

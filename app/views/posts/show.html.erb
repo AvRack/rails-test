@@ -1,0 +1,13 @@
+<% provide(:title, @post.title) %>
+	<div class="posts">
+		<div class = "user_info">
+    	<%= gravatar_for @user, size:52%>
+    	<h4 class="black_link" ><%= link_to @user.name, @user %></h4>
+		</div>
+    	<h3 class="post_title"><%= @post.title %></h3>
+    	<span class="content"><%= simple_format(@post.content) %></span>
+	 		<span class="black_link">
+   		Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+ 			</span></br>
+ 			<span class="timestamp"> Posted <%= @post.created_at %> </span>
+	</div>

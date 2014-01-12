@@ -1,0 +1,21 @@
+<% provide(:title, 'New Post') %>
+<h1>New post</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@post) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+
+      <%= f.label :tags_list, "Tags (separated by commas)" %>
+      <%= f.text_field :tag_list %>
+
+      <%= f.submit "Create post", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
